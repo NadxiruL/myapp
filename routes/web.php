@@ -5,6 +5,7 @@ use App\Http\Controllers\BlogController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomAuthController;
 use App\Http\Controllers\Admin\AdminController;
 
@@ -24,6 +25,9 @@ Route::get('/products',[ProductController::class, 'index'])->name('products');
 Route::get('/overview',[ProductController::class, 'overview'])->name('overview');
 Route::post('/products',[ProductController::class, 'store'])->name('products-insert');
 Route::get('/allproducts',[ProductController::class, 'allproducts'])->name('allproducts');
+Route::get('/category', [CategoryController::class, 'show'])->name('category-list');
+Route::get('/category/create', [CategoryController::class, 'create'])->name('category-create');
+Route::post('/category/create', [CategoryController::class, 'store'])->name('category-store');
 
 
 

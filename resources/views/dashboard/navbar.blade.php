@@ -30,7 +30,7 @@
 
         
         <li button class="nav-item dropdown-btn">
-          <a class="nav-link" href="{{ route('allproducts') }}">
+          <a class="nav-link" href="{{ route('category-list') }}">
             <span data-feather="layers"></span>
             Category
           </a>

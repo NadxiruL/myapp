@@ -85,7 +85,7 @@ class ProductController extends Controller
         
         $products = Product::select(['name','descriptions','price'])->paginate(9);
 
-        return view ('viewposting' , [
+        return view ('storefront' , [
 
             'product' => $products
 
@@ -132,6 +132,8 @@ class ProductController extends Controller
     public function allproducts () {
 
         $products = Product::select(['name','descriptions','price'])->paginate(6);
+
+        dd($products);
 
         return view ('allproducts' , [
 
