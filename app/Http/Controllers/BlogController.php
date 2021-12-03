@@ -13,10 +13,10 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index ()
     {
         
-            $posts = Post::all();
+            $posts = $posts = Post::select(['title','body'])->paginate(3);
 
             return view ('viewposting' , [
     
@@ -30,7 +30,12 @@ class BlogController extends Controller
 
 
     
-    public function store( Request $request) {
+    public function store ( Request $request) {
+
+        $validated = $request->validate([
+            'title' => 'required|unique:posts|max:255',
+            'body' => 'required',
+        ]);
 
         $post = Post::create([
 
@@ -40,11 +45,11 @@ class BlogController extends Controller
         ]);
 
         
-
-    return redirect()->route('mypost');
+    return redirect()->route('mypost')->with('success' , 'Posting Success!');
 
 }
 
+   
 
 
 

@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class PostFactory extends Factory
+class ProductFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,12 +14,15 @@ class PostFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->sentence(),
+            'name' => $this->faker->sentence(2, true),
             //true akan return sebagai string jika tidak return sebagai array
-            'body' => $this->faker->paragraph(2, true),
+            'descriptions' => $this->faker->sentence(3, true),
+            'price' => $this->faker->randomDigit(),
+            'weight' => $this->faker->randomDigit(),
+            'stock' => $this->faker->randomDigit(),
+            'category' => $this->faker->word(),
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')
         ];
     }
 }
-                                                    

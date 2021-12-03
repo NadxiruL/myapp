@@ -14,7 +14,7 @@ class PostController extends Controller
 
     }
 
-    public function showSemua () {
+    public function displayAll () {
 
         $posts = Post::select(['id','title','body'])->paginate(5);
 
@@ -29,7 +29,7 @@ class PostController extends Controller
     
     }
 
-    public function showSatuSahaja ($id) {
+    public function displayOne ($id) {
 
         $post = Post::find($id);
 

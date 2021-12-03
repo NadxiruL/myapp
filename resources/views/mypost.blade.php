@@ -7,9 +7,10 @@
 
 @if(session('success') )
 
-<h6 class="alert alert-danger"> {{ session('success') }} </h6>
+<h6 class="alert alert-success"> {{ session('success') }} </h6>
 
 @endif
+
 
 <table class="table table-success table-striped">
     <thead>
@@ -36,9 +37,6 @@
             </form>
           
           </td>
-
-              
-
          
         </tr>
         @endforeach
