@@ -5,9 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use App\Models\Category;
 
 class ProductController extends Controller
 {
+
+    protected $discount;
     /**
      * Display a listing of the resource.
      *
@@ -45,7 +48,7 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        
+
         $validated = $request->validate([
             'name' => 'required',
             'descriptions' => 'required',
@@ -56,7 +59,7 @@ class ProductController extends Controller
         ]);
 
         $products = Product::create([
-
+        
             'name' => $request->name,
             'descriptions' => $request->descriptions,
             'price' => $request->price,
@@ -64,11 +67,12 @@ class ProductController extends Controller
             'stock' => $request->stock,
             'category' => $request->category,
 
+           
             
         ]);
 
-
-        
+        dd($products);
+     
      return redirect()->route('products')->with('success' , 'Posting Success!');
 
 
@@ -88,7 +92,6 @@ class ProductController extends Controller
         return view ('storefront' , [
 
             'product' => $products
-
 
         ]);
 
@@ -133,7 +136,6 @@ class ProductController extends Controller
 
         $products = Product::select(['name','descriptions','price'])->paginate(6);
 
-        dd($products);
 
         return view ('allproducts' , [
 
@@ -142,6 +144,30 @@ class ProductController extends Controller
 
         ]);
 
+
+    }
+
+    // public function loadCategory() {
+
+    //     $category = Category::all();
+
+    //     return view ('product' , [
+
+    //         'categories' => $category
+    //     ]);
+
+    // }
+
+
+    public function __get($discount){
+
+        $this->discount;
+
+    }
+
+    public function __set($request , $discount) {
+
+        $this->discount = $discount;
 
     }
 

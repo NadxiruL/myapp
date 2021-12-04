@@ -11,23 +11,20 @@
 <table class="table">
     <thead>
       <tr>
-        <th scope="col">#</th>
         <th scope="col">Category</th>
         <th scope="col">Action</th>
       </tr>
     </thead>
     <tbody>
             
-
-     @foreach ($categories as $item)
-         
+         @foreach ($categories as $category)
+             
+     
   
       <tr>
-        <th scope="row">1</th>
-        <td>{{ $item->name }}</td>
-        <td>Otto</td>
+        <td>{{ $category->name}}</td>
+        <td></td>
 
-          <td>Otto</td>
       </tr>
       @endforeach
 

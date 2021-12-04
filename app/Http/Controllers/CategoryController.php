@@ -3,16 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use App\Http\Requests\StorecategoryRequest;
-use App\Http\Requests\UpdatecategoryRequest;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    
     public function index()
     {
 
@@ -20,23 +15,12 @@ class CategoryController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view ('createcategory');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StorecategoryRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StorecategoryRequest $request)
+    public function store(Request $request)
     {
 
         $validated = $request->validate([
@@ -53,59 +37,34 @@ class CategoryController extends Controller
         
      return redirect()->route('category-create')->with('success' , 'Category added!');
 
-      
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function show(category $category)
-    {
+    public function show() {
 
-        $category = category::select(['name']);
+        $category = Category::all();
 
         return view ('categorylist' , [
-
-            'categories' => $category
-         
-        ]);
     
+            'categories' => $category
+    
+        ]);
+
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(category $category)
-    {
-        //
+    public function loadCategory() {
+
+        $categoryselect = Category::all();
+        
+       
+        return view  ('product', [
+
+            'categories' => $categoryselect,
+
+        ]);
+
+
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdatecategoryRequest  $request
-     * @param  \App\Models\category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdatecategoryRequest $request, category $category)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(category $category)
-    {
-        //
-    }
 }

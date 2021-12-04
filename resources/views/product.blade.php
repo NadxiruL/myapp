@@ -56,8 +56,15 @@
   
     <div class="col-md-2">
     <div class="mb-3">
-      <label for="exampleInputEmail1">Category</label>
-      <input type="text" name="category" class="form-control mt-2" id="exampleInputEmail1" aria-describedby="emailHelp" >
+      <label class="mb-2" for="exampleInputEmail1">Category</label>
+      <select class="form-control" id="exampleFormControlSelect1">
+        @foreach ($categories as $category)
+            
+      
+        <option>{{$category->name}}</option>
+
+        @endforeach
+      </select>
     </div>
   </div>
 

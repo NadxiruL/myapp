@@ -1,13 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BlogController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\AboutController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\CustomAuthController;
-use App\Http\Controllers\Admin\AdminController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +20,8 @@ use App\Http\Controllers\Admin\AdminController;
 Route::get('/',[ProductController::class, 'show'])->name('product-view');
 Route::get('/products',[ProductController::class, 'index'])->name('products');
 Route::get('/overview',[ProductController::class, 'overview'])->name('overview');
-Route::post('/products',[ProductController::class, 'store'])->name('products-insert');
+Route::get('/products',[CategoryController::class, 'loadCategory'])->name('products');
+Route::post('/products',[ProductController::class, 'store'])->name('products-insert', );
 Route::get('/allproducts',[ProductController::class, 'allproducts'])->name('allproducts');
 Route::get('/category', [CategoryController::class, 'show'])->name('category-list');
 Route::get('/category/create', [CategoryController::class, 'create'])->name('category-create');
@@ -32,12 +30,11 @@ Route::post('/category/create', [CategoryController::class, 'store'])->name('cat
 
 
 //user login & logout
-Route::get('dashboard', [CustomAuthController::class, 'dashboard']); 
-Route::get('login', [CustomAuthController::class, 'index'])->name('login');
-Route::post('custom-login', [CustomAuthController::class, 'customLogin'])->name('login.custom'); 
-Route::get('registration', [CustomAuthController::class, 'registration'])->name('register-user');
-Route::post('custom-registration', [CustomAuthController::class, 'customRegistration'])->name('register.custom'); 
-Route::get('signout', [CustomAuthController::class, 'signOut'])->name('signout');
+// Route::get('login', [UserController::class, 'index'])->name('login');
+// Route::post('custom-login', [UserController::class, 'customLogin'])->name('login.custom'); 
+// Route::get('registration', [UserController::class, 'registration'])->name('register-user');
+// Route::post('custom-registration', [UserController::class, 'customRegistration'])->name('register.custom'); 
+// Route::get('signout', [UserController::class, 'signOut'])->name('signout');
 
 
 // Route::get('/dashboard',[PostController::class, 'index'])->name('posting');
