@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Category;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -20,7 +21,7 @@ class ProductController extends Controller
     {
 
         return view ('product');
-        
+
     }
 
     public function overview() {
@@ -37,7 +38,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-     
+
     }
 
     /**
@@ -49,30 +50,20 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
 
-        $validated = $request->validate([
-            'name' => 'required',
-            'descriptions' => 'required',
-            'price' => 'required',
-            'weight' => 'required',
-            'stock' => 'required',
-            'category' => 'required',
-        ]);
 
         $products = Product::create([
-        
+
             'name' => $request->name,
             'descriptions' => $request->descriptions,
             'price' => $request->price,
             'weight' => $request->weight,
             'stock' => $request->stock,
-            'category' => $request->category,
+            'category_id' => $request->category_id,
 
-           
-            
         ]);
 
-        dd($products);
-     
+
+
      return redirect()->route('products')->with('success' , 'Posting Success!');
 
 
@@ -86,8 +77,8 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        
-        $products = Product::select(['name','descriptions','price'])->paginate(9);
+
+        $products = Product::select(['id', 'name','descriptions','price'])->paginate(9);
 
         return view ('storefront' , [
 
@@ -157,19 +148,6 @@ class ProductController extends Controller
     //     ]);
 
     // }
-
-
-    public function __get($discount){
-
-        $this->discount;
-
-    }
-
-    public function __set($request , $discount) {
-
-        $this->discount = $discount;
-
-    }
 
 
 }

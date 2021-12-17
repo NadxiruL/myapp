@@ -12,23 +12,34 @@
     <thead>
       <tr>
         <th scope="col">Category</th>
-        <th scope="col">Action</th>
+        <th scope="col aligntext-right">Action</th>
       </tr>
     </thead>
     <tbody>
-            
+
          @foreach ($categories as $category)
-             
-     
-  
+
+
+
       <tr>
         <td>{{ $category->name}}</td>
-        <td></td>
+        <td>
+            <button class="btn btn-light">Edit</button>
+            <form action="{{ route('category-delete' ,  $category->id)}}" method="POST"
+                class="d-inline"
+            onsubmit="return confirm('are you sure you want to delete {{$category->name}} ? ') ">
+                @csrf
+                @method('delete')
+
+            <button class="btn btn-danger">Delete</button>
+            </form>
+        </td>
+
 
       </tr>
       @endforeach
 
-  
+
     </tbody>
   </table>
 

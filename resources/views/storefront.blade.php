@@ -15,12 +15,19 @@
       <h5 class="card-title">{{ $item->name }}</h5>
       <p class="card-text">{{ $item->descriptions }}</p>
       <p class="card-text">RM {{ $item->price }}</p>
-      <a href="#" class="btn btn-primary">Buy</a>
+      <form action="{{route('checkouts')}}" method="post">
+        @csrf
+        <input type="hidden" value="{{$item->id}}" name="product_id">
+        <input type="hidden" value="{{$item->name}}" name="product_name">
+        <input type="hidden" value="{{$item->price}}" name="product_price">
+      <button class="btn btn-primary">Buy</button>
+      <button class="btn btn-primary">Add To Cart</button>
+      </form>
     </div>
   </div>
-</div>  
+</div>
 
-@endforeach   
+@endforeach
 </div>
 </div>
 

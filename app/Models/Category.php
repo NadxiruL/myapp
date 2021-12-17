@@ -22,3 +22,11 @@ class Category extends Model
 
     }
 }
+
+// Category extends Model
+
+// public function getTotal () {
+
+
+
+
