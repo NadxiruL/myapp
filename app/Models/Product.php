@@ -3,34 +3,33 @@
 namespace App\Models;
 
 use App\Models\Category;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
     use HasFactory;
 
+    /**
+     * @var array
+     */
+    protected $guarded = ['id'];
 
-    protected $fillable =
-    [
-
-    'name' ,
-    'descriptions',
-    'price',
-    'weight',
-    'stock',
-    'category_id',
-
-    ];
-
-    public function category() {
-
-        return $this->belongsTo(Category::class);
-
+    /**
+     * @return mixed
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
-    public function orderdetail(){
-
+    /**
+     * //@TODO remove this
+     * //product should not have a order details
+     * @return mixed
+     */
+    public function orderdetail()
+    {
         return $this->belongsTo(Orderdetails::class);
     }
 }

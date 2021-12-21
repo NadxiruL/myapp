@@ -13,22 +13,22 @@
             Orders
           </a>
         </li>
-        
+
         <li button class="nav-item dropdown-btn">
-          <a class="nav-link" href="{{ route('products') }}">
+          <a class="nav-link" href="{{ route('products.create') }}">
             <span data-feather="file"></span>
             Product
           </a>
         </li>
 
         <li button class="nav-item dropdown-btn">
-          <a class="nav-link" href="{{ route('allproducts') }}">
+          <a class="nav-link" href="{{ route('products.index') }}">
             <span data-feather="package"></span>
             All Products
           </a>
         </li>
 
-        
+
         <li button class="nav-item dropdown-btn">
           <a class="nav-link" href="{{ route('category-list') }}">
             <span data-feather="layers"></span>
@@ -36,7 +36,7 @@
           </a>
         </li>
 
-        
+
         <li button class="nav-item dropdown-btn">
           <a class="nav-link" href="{{ route('allproducts') }}">
             <span data-feather="users"></span>
@@ -53,5 +53,3 @@
       </ul>
     </div>
   </nav>
-
-  
