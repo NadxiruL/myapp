@@ -12,25 +12,23 @@ class Order extends Model
     /**
      * @var array
      */
-    protected $fillable = [
+    protected $guarded = ['id'];
 
-        'customer_id',
-        'amount',
-        'shipping_address',
-        'status',
-
-    ];
-
-//Route::resource('categories', CategoryController::class);
+    /**
+     * notes: standard practice defining relations
+     * @return mixed
+     */
+    public function orderStatus()
+    {
+        return $this->belongsTo(OrderStatus::class, 'order_status_id', 'id');
+    }
 
     /**
      * @return mixed
      */
     public function toCustomer()
     {
-
         return $this->belongsTo(Customer::class);
-
     }
 
     /**
@@ -38,8 +36,6 @@ class Order extends Model
      */
     public function toOrdeDetails()
     {
-
         return $this->hasMany(Orderdetails::class);
-
     }
 }
