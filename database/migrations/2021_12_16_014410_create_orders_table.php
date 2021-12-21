@@ -15,10 +15,11 @@ class CreateOrdersTable extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('customer_id');
-            $table->float('amount');
-            $table->text('shipping_address');
-            $table->string('status');
+            $table->foreignId('customer_id')->nullable()->index();
+            $table->decimal('amount', 8, 2)->default(0);
+            $table->longText('shipping_address')->nullable();
+            //notes: change to FK or others tables
+            $table->foreignId('order_status_id')->nullable()->nullable();
             $table->timestamps();
 
         });

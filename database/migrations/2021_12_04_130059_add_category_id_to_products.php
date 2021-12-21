@@ -16,7 +16,9 @@ class AddCategoryIdToProducts extends Migration
         Schema::table('products', function (Blueprint $table) {
             //index refer mysql documentation indexing purpose
             //for performance wise
-            $table->foreignId('category_id')->nullable()->index();
+            $table->foreignId('category_id')
+                ->after('stock')
+                ->nullable()->index();
         });
     }
 
