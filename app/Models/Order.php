@@ -9,16 +9,23 @@ class Order extends Model
 {
     use HasFactory;
 
+    /**
+     * @var array
+     */
     protected $fillable = [
 
         'customer_id',
         'amount',
         'shipping_address',
-        'status'
+        'status',
 
     ];
 
+//Route::resource('categories', CategoryController::class);
 
+    /**
+     * @return mixed
+     */
     public function toCustomer()
     {
 
@@ -26,6 +33,9 @@ class Order extends Model
 
     }
 
+    /**
+     * @return mixed
+     */
     public function toOrdeDetails()
     {
 

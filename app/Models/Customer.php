@@ -9,13 +9,20 @@ class Customer extends Model
 {
     use HasFactory;
 
+    /**@TODO changed
+     * @var array
+     */
+    /**
+     * @var array
+     */
     protected $fillable = [
-
-
 
     ];
 
-
+    //@TODO change to proper name follow Laravel naming standards
+    /**
+     * @return mixed
+     */
     public function toOrder()
     {
 

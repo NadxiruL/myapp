@@ -38,14 +38,14 @@
 
 
         <li button class="nav-item dropdown-btn">
-          <a class="nav-link" href="{{ route('allproducts') }}">
+          <a class="nav-link" href="{{ route('products.index') }}">
             <span data-feather="users"></span>
             Customers
           </a>
         </li>
 
         <li button class="nav-item dropdown-btn">
-          <a class="nav-link" href="{{ route('allproducts') }}">
+          <a class="nav-link" href="{{ route('products.index') }}">
             <span data-feather="settings"></span>
             Settings
           </a>

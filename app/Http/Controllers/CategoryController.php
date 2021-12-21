@@ -5,22 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
-
 class CategoryController extends Controller
 {
 
     public function index()
     {
-
-        return view ('categorylist');
-
+        return view('categorylist');
     }
 
     public function create()
     {
-        return view ('createcategory');
+        return view('createcategory');
     }
 
+    /**
+     * @param Request $request
+     */
     public function store(Request $request)
     {
 
@@ -28,45 +28,47 @@ class CategoryController extends Controller
             'name' => 'required',
         ]);
 
-
         Category::create([
 
-            'name' => $request->name
+            'name' => $request->name,
 
         ]);
 
-
-     return redirect()->route('category-create')->with('success' , 'Category added!');
+        return redirect()->route('category-create')->with('success', 'Category added!');
 
     }
 
-    public function show() {
+    public function show()
+    {
 
         $category = Category::all();
 
-        return view ('categorylist' , [
+        return view('categorylist', [
 
-            'categories' => $category
+            'categories' => $category,
 
         ]);
 
     }
 
-    public function loadCategory() {
+    public function loadCategory()
+    {
 
         $categoryselect = Category::all();
 
-
-        return view  ('product', [
+        return view('product', [
 
             'categories' => $categoryselect,
 
         ]);
 
-
     }
 
-    public function destroy ($id) {
+    /**
+     * @param $id
+     */
+    public function destroy($id)
+    {
 
         $category = Category::find($id);
 
@@ -75,6 +77,5 @@ class CategoryController extends Controller
         return redirect()->route('category-list');
 
     }
-
 
 }

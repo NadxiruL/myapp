@@ -12,11 +12,6 @@ class ProductController extends Controller
 {
 
     /**
-     * @var mixed
-     */
-    protected $discount;
-
-    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -53,20 +48,10 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        // $product = Product::create([
-        //     'name'         => $request->name,
-        //     'descriptions' => $request->descriptions,
-        //     'price'        => $request->price,
-        //     'weight'       => $request->weight,
-        //     'stock'        => $request->stock,
-        //     'category_id'  => $request->category_id,
-        // ]);
 
-        //alternative way to store data
         $request->merge(['category_id' => 1]);
         $product = Product::create($request->all());
 
-        //return redirect()->back()->with('success', 'Posting Success!');
         return redirect()->route('products.index')->with('success', 'Posting Success!');
 
     }
@@ -83,9 +68,7 @@ class ProductController extends Controller
         $products = Product::select(['id', 'name', 'descriptions', 'price'])->paginate(9);
 
         return view('storefront', [
-
             'product' => $products,
-
         ]);
 
     }
@@ -98,7 +81,12 @@ class ProductController extends Controller
      */
     public function edit(Product $product)
     {
-        //
+        $categories = Category::all();
+
+        return view('products.edit', [
+            'product'    => $product,
+            'categories' => $categories,
+        ]);
     }
 
     /**
@@ -108,9 +96,12 @@ class ProductController extends Controller
      * @param  \App\Models\Product                     $product
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(Product $product, UpdateProductRequest $request)
     {
-        //
+        $product->update($request->all());
+
+        return redirect()->route('products.index')
+            ->with('success', 'Product updated!');
     }
 
     /**
@@ -123,36 +114,5 @@ class ProductController extends Controller
     {
         //
     }
-
-    public function allproducts()
-    {
-
-        $products = Product::select(['name', 'descriptions', 'price'])->paginate(6);
-
-        return view('allproducts', [
-
-            'product' => $products,
-
-        ]);
-
-    }
-
-    public function overview()
-    {
-
-        return view('overview');
-
-    }
-
-    // public function loadCategory() {
-
-    //     $category = Category::all();
-
-    //     return view ('product' , [
-
-    //         'categories' => $category
-    //     ]);
-
-    // }
 
 }

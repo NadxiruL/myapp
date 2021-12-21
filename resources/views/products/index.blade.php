@@ -19,7 +19,7 @@
       <h5 class="card-title">{{ $item->name }}</h5>
       <p class="card-text">{{ $item->descriptions }}</p>
       <p class="card-text">RM {{ $item->price }}</p>
-      <a href="#" class="btn btn-primary">Edit</a>
+      <a href="{{ route('products.edit',$item) }}" class="btn btn-primary">Edit</a>
     </div>
   </div>
 </div>

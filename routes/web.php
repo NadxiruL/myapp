@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\OverViewController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
@@ -25,25 +26,18 @@ use Illuminate\Support\Facades\Route;
 //API
 
 //Route::get('/something', [TestController::class, 'getIndexProduct']);
-
-//redundant routing registration
-//use Route::resource();
-
 Route::resource('products', ProductController::class);
 
-//Route::get('/', [ProductController::class, 'show'])->name('product-view');
-//Route::get('/products', [ProductController::class, 'index'])->name('products');
-//Route::post('/products', [ProductController::class, 'store'])->name('products-insert', );
-
-Route::get('/overview', [ProductController::class, 'overview'])->name('overview');
-//Route::get('/products', [CategoryController::class, 'loadCategory'])->name('products');
-Route::get('/allproducts', [ProductController::class, 'allproducts'])->name('allproducts');
+//custom or single route file
+Route::get('/overview', OverViewController::class)->name('overview');
 
 //use route resource Route::resource();
+//controller CategoryController
+//Task assignment move below codes to resource and views same as product structure
+//Route::get('/products', [CategoryController::class, 'loadCategory'])->name('products');
 Route::get('/category', [CategoryController::class, 'show'])->name('category-list');
 Route::get('/category/create', [CategoryController::class, 'create'])->name('category-create');
 Route::post('/category/create', [CategoryController::class, 'store'])->name('category-store');
-
 Route::delete('category/{id}', [CategoryController::class, 'destroy'])->name('category-delete');
 
 //CHECKOUTS
