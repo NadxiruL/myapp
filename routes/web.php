@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
@@ -26,29 +27,19 @@ use Illuminate\Support\Facades\Route;
 //Plain
 //API
 
-//Route::get('/something', [TestController::class, 'getIndexProduct']);
-Route::resource('products', ProductController::class);
+Route::group(['namespace' => 'Admin', 'middleware' => [], 'prefix' => 'admin/manage'], function () {
+    Route::get('/', [AdminController::class, 'index'])->name('admin.index');
+});
 
-//custom or single route file
-Route::get('/overview', OverViewController::class)->name('overview');
+Route::group(['prefix' => 'manage'], function () {
+    Route::resource('products', \ProductController::class);
+    Route::get('/overview', \OverViewController::class)->name('overview');
 
-//use route resource Route::resource();
-//controller CategoryController
-//Task assignment move below codes to resource and views same as product structure
-Route::resource('category', CategoryController::class);
-//Route::get('/products', [CategoryController::class, 'loadCategory'])->name('products');
-// Route::get('/category', [CategoryController::class, 'show'])->name('category-list');
-// Route::get('/category/create', [CategoryController::class, 'create'])->name('category-create');
-// Route::post('/category/create', [CategoryController::class, 'store'])->name('category-store');
-// Route::delete('category/{id}', [CategoryController::class, 'destroy'])->name('category-delete');
+    Route::resource('categories', \CategoryController::class);
 
-//CHECKOUTS
-//resource Route::resource();
-//Route::get('/checkouts' , [OrderController::class 'showordersummary'])->('ordersummary');
-//Route::resource('checkouts', CheckoutController::class);
-
-Route::post('/checkouts', [CheckoutController::class, 'checkout'])->name('checkouts');
-Route::post('/checkouts/', [CheckoutController::class, 'checkout'])->name('checkouts');
+    Route::post('/checkouts', [CheckoutController::class, 'checkout'])->name('checkouts');
+    Route::post('/checkouts/', [CheckoutController::class, 'checkout'])->name('checkouts');
+});
 
 //ORDER//
 //Route::post('/order', [OrderController::class, 'Order'])->name('product-order');

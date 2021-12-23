@@ -9,8 +9,16 @@
 <div class="container">
   <div class="row justify-content-md-center">
     <div class="col-md-6 col-center mt-3">
-      <form action="{{ route('products.store') }}" method="POST">
+      <form action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
+
+           <div class="col-lg-6">
+          <div class="mb-3">
+            <label for="exampleInputEmail1">Image</label>
+            <input type="file" name="file" >
+          </div>
+        </div>
+
         <div class="col-lg-6">
           <div class="mb-3">
             <label for="exampleInputEmail1">Name</label>

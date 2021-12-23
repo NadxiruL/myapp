@@ -25,12 +25,13 @@ class StoreProductRequest extends FormRequest
     {
 
         return [
+            'file'         => 'required',
             'name'         => 'required',
             'descriptions' => 'required',
             'price'        => 'required',
             'weight'       => 'required',
             'stock'        => 'required',
-            //'category_id' => 'required',
+            'category_id'  => 'required',
         ];
     }
 }

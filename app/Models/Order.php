@@ -28,6 +28,7 @@ class Order extends Model
      */
     public function customer()
     {
+        //missing fk and pk
         return $this->belongsTo(Customer::class);
     }
 
