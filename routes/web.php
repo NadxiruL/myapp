@@ -7,6 +7,7 @@ use App\Http\Controllers\OverViewController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\UserController;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,11 +35,12 @@ Route::get('/overview', OverViewController::class)->name('overview');
 //use route resource Route::resource();
 //controller CategoryController
 //Task assignment move below codes to resource and views same as product structure
+Route::resource('category', CategoryController::class);
 //Route::get('/products', [CategoryController::class, 'loadCategory'])->name('products');
-Route::get('/category', [CategoryController::class, 'show'])->name('category-list');
-Route::get('/category/create', [CategoryController::class, 'create'])->name('category-create');
-Route::post('/category/create', [CategoryController::class, 'store'])->name('category-store');
-Route::delete('category/{id}', [CategoryController::class, 'destroy'])->name('category-delete');
+// Route::get('/category', [CategoryController::class, 'show'])->name('category-list');
+// Route::get('/category/create', [CategoryController::class, 'create'])->name('category-create');
+// Route::post('/category/create', [CategoryController::class, 'store'])->name('category-store');
+// Route::delete('category/{id}', [CategoryController::class, 'destroy'])->name('category-delete');
 
 //CHECKOUTS
 //resource Route::resource();

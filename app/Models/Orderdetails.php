@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 //@TODO changed to proper naming
 //all model should be singular
 //OrderDetail
-class Orderdetails extends Model
+class OrderDetail extends Model
 {
     use HasFactory;
 
@@ -21,7 +21,7 @@ class Orderdetails extends Model
     /**
      * @return mixed
      */
-    public function orderdetails()
+    public function orderDetails()
     {
         return $this->hasMany(Product::class);
     }
@@ -30,9 +30,8 @@ class Orderdetails extends Model
      * //@TODO change to proper standard practice for relationship
      * @return mixed
      */
-    public function toOrder()
+    public function order()
     {
-
         return $this->belongsTo(Order::class);
 
     }

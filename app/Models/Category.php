@@ -14,22 +14,16 @@ class Category extends Model
     /**
      * @var array
      */
-    protected $fillable = [
-
-        'name',
-
-    ];
+    protected $guarded = ['id'];
 
     /**
      * @return mixed
      */
-    public function toProducts()
+    public function product()
     {
         //@TODO assign FK and PK to below relationship
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Product::class, 'product_id' , 'id');
     }
 }
 
-// Category extends Model
 
-// public function getTotal () {

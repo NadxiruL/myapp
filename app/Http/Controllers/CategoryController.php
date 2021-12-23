@@ -10,12 +10,19 @@ class CategoryController extends Controller
 
     public function index()
     {
-        return view('categorylist');
+
+        $categories = Category::all();
+
+        return view('categories.index',[
+        'categories' => $categories,
+
+        ]);
+
     }
 
     public function create()
     {
-        return view('createcategory');
+        return view('categories.create');
     }
 
     /**
@@ -29,7 +36,6 @@ class CategoryController extends Controller
         ]);
 
         Category::create([
-
             'name' => $request->name,
 
         ]);
@@ -41,26 +47,7 @@ class CategoryController extends Controller
     public function show()
     {
 
-        $category = Category::all();
 
-        return view('categorylist', [
-
-            'categories' => $category,
-
-        ]);
-
-    }
-
-    public function loadCategory()
-    {
-
-        $categoryselect = Category::all();
-
-        return view('product', [
-
-            'categories' => $categoryselect,
-
-        ]);
 
     }
 

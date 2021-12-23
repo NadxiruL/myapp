@@ -50,6 +50,7 @@ class ProductController extends Controller
     {
 
         $request->merge(['category_id' => 1]);
+        //dd($request);
         $product = Product::create($request->all());
 
         return redirect()->route('products.index')->with('success', 'Posting Success!');

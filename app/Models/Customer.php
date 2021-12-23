@@ -15,15 +15,13 @@ class Customer extends Model
     /**
      * @var array
      */
-    protected $fillable = [
-
-    ];
+    protected $guarded = ['id'];
 
     //@TODO change to proper name follow Laravel naming standards
     /**
      * @return mixed
      */
-    public function toOrder()
+    public function order()
     {
 
         return $this->hasMany(Order::class);

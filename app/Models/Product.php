@@ -26,10 +26,8 @@ class Product extends Model
     /**
      * //@TODO remove this
      * //product should not have a order details
+     *
+     * //remove done
      * @return mixed
      */
-    public function orderdetail()
-    {
-        return $this->belongsTo(Orderdetails::class);
-    }
 }

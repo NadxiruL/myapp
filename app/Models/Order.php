@@ -26,7 +26,7 @@ class Order extends Model
     /**
      * @return mixed
      */
-    public function toCustomer()
+    public function customer()
     {
         return $this->belongsTo(Customer::class);
     }
@@ -34,7 +34,7 @@ class Order extends Model
     /**
      * @return mixed
      */
-    public function toOrdeDetails()
+    public function orderDetails()
     {
         return $this->hasMany(Orderdetails::class);
     }
