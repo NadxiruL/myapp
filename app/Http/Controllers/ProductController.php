@@ -18,7 +18,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::paginate();
+        //with is eager loading n+1 query
+        $products = Product::with('category')->paginate();
 
         return view('products.index', [
             'products' => $products,
@@ -49,10 +50,11 @@ class ProductController extends Controller
     public function store(StoreProductRequest $request)
     {
 
-        $request->merge(['category_id' => 1]);
-        //dd($request);
-        $product = Product::create($request->all());
+        //first args is folder and second args is "disk"
+        $image = $request->file('file')->store('products', 'public');
+        $request->merge(['image' => $image]);
 
+        $product = Product::create($request->all());
         return redirect()->route('products.index')->with('success', 'Posting Success!');
 
     }

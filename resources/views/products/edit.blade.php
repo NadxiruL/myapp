@@ -54,7 +54,7 @@
             <label class="mb-2" for="exampleInputEmail1">Category</label>
             <select name="category_id" class="form-control" id="exampleFormControlSelect1">
               @foreach ($categories as $category)
-              <option {{ $product->category_id == $category->id ? 'selected' : '' }} value="{{ $category->id }}">{{$category->name}}</option>
+              <option {{$category->id ==$product->category_id ? 'selected' : '' }} value="{{ $category->id}}">{{ $category->name }}</option>
               @endforeach
             </select>
           </div>

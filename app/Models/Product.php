@@ -23,11 +23,4 @@ class Product extends Model
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
-    /**
-     * //@TODO remove this
-     * //product should not have a order details
-     *
-     * //remove done
-     * @return mixed
-     */
 }

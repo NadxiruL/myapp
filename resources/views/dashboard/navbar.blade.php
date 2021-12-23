@@ -30,7 +30,7 @@
 
 
         <li button class="nav-item dropdown-btn">
-          <a class="nav-link" href="{{ route('category.create') }}">
+          <a class="nav-link" href="{{ route('categories.index') }}">
             <span data-feather="layers"></span>
             Category
           </a>

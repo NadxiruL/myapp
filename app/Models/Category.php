@@ -21,9 +21,7 @@ class Category extends Model
      */
     public function product()
     {
-        //@TODO assign FK and PK to below relationship
-        return $this->hasMany(Product::class, 'product_id' , 'id');
+        //reverse releationships
+        return $this->belongsTo(Product::class, 'id', 'category_id');
     }
 }
-
-
