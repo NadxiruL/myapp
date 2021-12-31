@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateProductRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -87,7 +88,7 @@ class ProductController extends Controller
         $categories = Category::all();
 
         return view('products.edit', [
-            'product'    => $product,
+            'product' => $product,
             'categories' => $categories,
         ]);
     }
@@ -101,6 +102,16 @@ class ProductController extends Controller
      */
     public function update(Product $product, UpdateProductRequest $request)
     {
+
+        if ($request->has('file')) {
+            //if user request to change new image:png
+            $image = $request->file('file')->store('products', 'public');
+            $request->merge(['image' => $image]);
+
+            //logging to file as debug process.
+            logger()->debug($request->all());
+        }
+
         $product->update($request->all());
 
         return redirect()->route('products.index')

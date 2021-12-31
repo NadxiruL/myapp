@@ -14,6 +14,7 @@ class OverViewController extends Controller
      */
     public function __invoke(Request $request)
     {
+
         return view('overview');
     }
 }

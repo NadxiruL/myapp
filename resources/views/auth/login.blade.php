@@ -1,4 +1,7 @@
-<main class="login-form">
+
+@extends('dashboard.dashboard')
+@section('content')
+<main class="login-form" style="margin-top: 3em;">
     <div class="cotainer">
         <div class="row justify-content-center">
             <div class="col-md-4">
@@ -41,3 +44,4 @@
         </div>
     </div>
 </main>
+@endsection

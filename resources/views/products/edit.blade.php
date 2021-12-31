@@ -1,7 +1,9 @@
 @extends('dashboard.dashboard')
 @section('content')
 @if($errors->any() )
-<h6 class="alert alert-danger"> Please insert you input </h6>
+  @foreach($errors->all() as $error)
+    <h6 class="alert alert-danger">{{ $error }} </h6>
+  @endforeach
 @endif
 @if(session('success') )
 <h6 class="alert alert-success"> {{ session('success') }} </h6>
@@ -9,9 +11,27 @@
 <div class="container">
   <div class="row justify-content-md-center">
     <div class="col-md-6 col-center mt-3">
-      <form action="{{ route('products.update',$product) }}" method="POST">
+      <!-- set our to support file upload => form data !-->
+      <form action="{{ route('products.update',$product) }}" method="POST" enctype="multipart/form-data">
         @csrf
         {{ method_field('PUT') }}
+
+
+        <div class="col-lg-6">
+          <div class="mb-3">
+            <label for="exampleInputEmail1">Image</label>
+            <img src="/storage/{{ $product->image }}" height="250" alt="">
+
+          </div>
+        </div>
+
+           <div class="col-lg-6">
+          <div class="mb-3">
+            <label for="exampleInputEmail1">Image</label>
+            <input type="file" name="file" >
+          </div>
+        </div>
+
 
         <div class="col-lg-6">
           <div class="mb-3">

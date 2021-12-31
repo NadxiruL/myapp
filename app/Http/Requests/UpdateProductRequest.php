@@ -24,7 +24,8 @@ class UpdateProductRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            //learn how to use validation of images and mimes
+            'file' => 'image|mimes:png,jpeg,jpg',
         ];
     }
 }
