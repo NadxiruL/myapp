@@ -27,11 +27,13 @@ use Illuminate\Support\Facades\Route;
 //Plain
 //API
 
+Route::view('/', 'overview');
+
 Route::group(['namespace' => 'Admin', 'middleware' => [], 'prefix' => 'admin/manage'], function () {
     Route::get('/', [AdminController::class, 'index'])->name('admin.index');
 });
 
-Route::group(['prefix' => 'manage'], function () {
+Route::group(['prefix' => 'manage', 'middleware' => ['auth']], function () {
     Route::resource('products', \ProductController::class);
     Route::get('/overview', \OverViewController::class)->name('overview');
 
@@ -45,11 +47,11 @@ Route::group(['prefix' => 'manage'], function () {
 //Route::post('/order', [OrderController::class, 'Order'])->name('product-order');
 
 //user login & logout
-// Route::get('login', [UserController::class, 'index'])->name('login');
-// Route::post('custom-login', [UserController::class, 'customLogin'])->name('login.custom');
-// Route::get('registration', [UserController::class, 'registration'])->name('register-user');
-// Route::post('custom-registration', [UserController::class, 'customRegistration'])->name('register.custom');
-// Route::get('signout', [UserController::class, 'signOut'])->name('signout');
+Route::get('login', [UserController::class, 'index'])->name('login');
+Route::post('custom-login', [UserController::class, 'customLogin'])->name('login.custom');
+Route::get('registration', [UserController::class, 'registration'])->name('register-user');
+Route::post('custom-registration', [UserController::class, 'customRegistration'])->name('register.custom');
+Route::get('signout', [UserController::class, 'signOut'])->name('signout');
 
 // Route::get('/dashboard',[PostController::class, 'index'])->name('posting');
 
