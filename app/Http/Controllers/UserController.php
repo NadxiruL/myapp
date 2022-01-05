@@ -33,7 +33,7 @@ class UserController extends Controller
             //higher level component for notification
             //auth()->user()->notify(new \App\Notifications\LoginEmailActivityNotification());
 
-            event(new \App\Events\UserLoggedInEvent(auth()->user()));
+            //event(new \App\Events\UserLoggedInEvent(auth()->user()));
 
             //basic component
             //Mail::to($request->email)->send(new \App\Mail\LoginActivityEmail('Kuala Terengganu'));

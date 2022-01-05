@@ -14,7 +14,7 @@
     @foreach ($categories as $category)
     <tr>
       <td>{{ $category->name}}</td>
-      <td>{{ $category->product()->count() ?? 0 }}</td>
+      <td>{{ $category->product()->count() ?? 0}}</td>
       <td>
         <button class="btn btn-light">Edit</button>
         <form action="{{ route('categories.destroy' ,  $category->id)}}" method="POST"

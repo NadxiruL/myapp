@@ -21,12 +21,14 @@ class ProductController extends Controller
     {
         //with is eager loading n+1 query
         $products = Product::with('category')->paginate();
-
+        // dd($products);
         return view('products.index', [
             'products' => $products,
         ]);
 
     }
+
+
 
     /**
      * Show the form for creating a new resource.
@@ -69,9 +71,9 @@ class ProductController extends Controller
     public function show(Product $product)
     {
 
-        $products = Product::select(['id', 'name', 'descriptions', 'price'])->paginate(9);
+        $products = Product::select(['id', 'image', 'name', 'descriptions', 'price' , 'stock' , 'category_id'])->paginate(9);
 
-        return view('storefront', [
+        return view('storefront.index', [
             'product' => $products,
         ]);
 

@@ -8,20 +8,25 @@
  @foreach ($product as $item)
 
 
-<div class="col-4">
+<div class="col-3">
   <div class="card mt-5" >
-    <img class="card-img-top" src="..." alt="Card image cap">
+    <img class="card-img-top" src="/storage/{{$item->image}}" alt="Card image cap" height="170px" width="50px">
     <div class="card-body">
       <h5 class="card-title">{{ $item->name }}</h5>
       <p class="card-text">{{ $item->descriptions }}</p>
-      <p class="card-text">RM {{ $item->price }}</p>
+      <p class="card-text">RM : {{ $item->price }}</p>
+      <p class="card-text">Stock : {{ $item->stock }}</p>
       <form action="{{route('checkouts')}}" method="post">
         @csrf
         <input type="hidden" value="{{$item->id}}" name="product_id">
-        <input type="hidden" value="{{$item->name}}" name="product_name">
         <input type="hidden" value="{{$item->price}}" name="product_price">
+        <input type="hidden" value="{{$item->name}}" name="product_name">
+        <label for="product_quantity">Quantity</label>
+        <input class="col-2 d-inline" type="number" name="product_quantity">
+        <div class="mt-2">
       <button class="btn btn-primary">Buy</button>
       <button class="btn btn-primary">Add To Cart</button>
+    </div>
       </form>
     </div>
   </div>

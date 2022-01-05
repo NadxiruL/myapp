@@ -7,14 +7,10 @@ use Illuminate\Http\Request;
 class OrderController extends Controller
 {
 
-    public function Order (Request $request) {
-
-
+    public function storeOrder (Request $request)
+    {
 
 
     }
-
-
-
 
 }

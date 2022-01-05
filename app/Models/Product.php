@@ -23,4 +23,10 @@ class Product extends Model
         return $this->belongsTo(Category::class, 'category_id', 'id');
     }
 
+
+    public function checkout()
+    {
+        return $this->hasMany(Checkout::class, 'checkout_product_id' , 'id');
+    }
+
 }

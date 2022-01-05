@@ -24,4 +24,10 @@ class Category extends Model
         //reverse releationships
         return $this->belongsTo(Product::class, 'id', 'category_id');
     }
+
+    public function checkout()
+    {
+        return $this->belongsTo(Checkout::class, 'id', 'category_id');
+    }
+
 }

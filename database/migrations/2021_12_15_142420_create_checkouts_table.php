@@ -15,6 +15,13 @@ class CreateCheckoutsTable extends Migration
     {
         Schema::create('checkouts', function (Blueprint $table) {
             $table->id();
+            //$table->foreignId('checkout_customer_id')->nullable()->index();
+            $table->foreignId('checkout_product_id')->nullable()->index();
+            $table->double('product_price')->nullable();
+            $table->string('product_name')->nullable();
+            $table->bigInteger('product_quantity')->nullable();
+            $table->double('total_price')->nullable();
+            //$table->foreignId('checkout_category_id')->nullable()->index();
             $table->timestamps();
         });
     }

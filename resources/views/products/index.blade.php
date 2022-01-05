@@ -4,10 +4,11 @@
 @section('content')
 <div class="container">
     <div class="row">
+
         @foreach ($products as $item)
-        <div class="col-4">
+        <div class="col-3">
             <div class="card mt-5" >
-                <img class="card-img-top" src="/storage/{{$item->image}}" alt="Card image cap">
+                <img class="card-img-top" src="/storage/{{$item->image}}" alt="Card image cap" height="170px" width="50px">
                 <div class="card-body">
                     <h5 class="card-title">{{ $item->name }}</h5>
                     <h5 class="card-title">CATEGORY : {{ optional($item->category)->name }}</h5>

@@ -3,8 +3,8 @@
 @section('content')
 <main class="login-form" style="margin-top: 3em;">
     <div class="cotainer">
-        <div class="row justify-content-center">
-            <div class="col-md-4">
+        <div class="row justify-content-md-center">
+                <div class="col-md-4 col-center mt-3">
                 <div class="card">
                     <h3 class="card-header text-center">Login</h3>
                     <div class="card-body">

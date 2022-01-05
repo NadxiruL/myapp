@@ -30,6 +30,6 @@ class SendEmailToUserLoggedInListener
         logger('event listener for user logged in');
 
         Mail::to($event->user->email)
-            ->send(new \App\Mail\LoginActivityEmail('Kuala Terengganu'));
+            ->send(new \App\Mail\LoginActivityEmail('Order placed'));
     }
 }
