@@ -72,12 +72,14 @@ class ProductController extends Controller
     {
 
         $products = Product::select(['id', 'image', 'name', 'descriptions', 'price' , 'stock' , 'category_id'])->paginate(9);
+       // $products = Product::all()->except(['created_at','update_at']);
 
         return view('storefront.index', [
             'product' => $products,
         ]);
 
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -129,6 +131,17 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+    }
+
+    public function search(Request $request)
+    {
+        $search = $request->search;
+
+        $product = Product::query()->get();
+
+        dd($product);
+
+
     }
 
 }

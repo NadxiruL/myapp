@@ -15,18 +15,24 @@
       <h5 class="card-title">{{ $item->name }}</h5>
       <p class="card-text">{{ $item->descriptions }}</p>
       <p class="card-text">RM : {{ $item->price }}</p>
-      <p class="card-text">Stock : {{ $item->stock }}</p>
-      <form action="{{route('checkouts')}}" method="post">
+      <p class="card-text">Stock : {{ $item->stock <= 0 ? 'not in stock' : $item->stock}} </p>
+      <form action="{{route('checkouts', $item->id)}}" method="post">
         @csrf
         <input type="hidden" value="{{$item->id}}" name="product_id">
         <input type="hidden" value="{{$item->price}}" name="product_price">
         <input type="hidden" value="{{$item->name}}" name="product_name">
+        <input type="hidden" value="{{$item->stock}}"  name="product_stock">
         <label for="product_quantity">Quantity</label>
         <input class="col-2 d-inline" type="number" name="product_quantity">
         <div class="mt-2">
-      <button class="btn btn-primary">Buy</button>
-      <button class="btn btn-primary">Add To Cart</button>
-    </div>
+            {{-- @if ($item->stock > 0) --}}
+            <button class="btn btn-primary">Buy</button>
+            <button class="btn btn-primary">Add To Cart</button>
+          </div>
+          {{-- @else
+
+        @endif --}}
+
       </form>
     </div>
   </div>
@@ -35,5 +41,13 @@
 @endforeach
 </div>
 </div>
+
+{{-- <div><form action="{{route('search')}}" method="POST">
+    @csrf
+<label for="">Search</label>
+<input type="text" name="search">
+<button>Submit</button>
+</form>
+</div> --}}
 
 {{ $product->links() }}

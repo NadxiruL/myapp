@@ -38,17 +38,15 @@ Route::group(['prefix' => 'manage', 'middleware' => ['auth']], function () {
     Route::get('/overview', \OverViewController::class)->name('overview');
 
     Route::resource('categories', \CategoryController::class);
-
-
     //Route::post('/checkouts/', [CheckoutController::class, 'checkout'])->name('checkouts');
 });
 
 //Store front
 
 Route::get('/', [ProductController::class, 'show']);
-Route::get('/checkouts/', [CheckoutController::class, 'index'])->name('checkout.index');
-Route::post('/checkouts', [CheckoutController::class, 'store'])->name('checkouts');
-
+Route::get('/checkouts/{id}', [CheckoutController::class, 'index'])->name('checkout.index');
+Route::post('/checkouts/{id}', [CheckoutController::class, 'store'])->name('checkouts');
+//Route::post('/checkouts/{id}', [CheckoutController::class, 'updateStock'])->name('update.stock');
 
 
 

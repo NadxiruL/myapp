@@ -12,20 +12,21 @@ use Session;
 class CheckoutController extends Controller
 {
 
-    public function index()
+    public function index($id)
     {
-        $checkouts = Checkout::with('product')->get();
+        $checkouts = Checkout::find($id)->with('product');
         // return view('checkouts', compact('checkouts'));
 
         return view('checkouts',[
-            'chekcouts' => $checkouts,
+            'name' => $checkouts->product->name,
+            'price' => $checkouts->product->price,
         ]);
     }
 
-    public function store(StoreCheckoutRequest $request)
+    public function store(StoreCheckoutRequest $request ,$id)
     {
-    //$checkouts = Checkout::create($request->all());
 
+    //$checkouts = Checkout::create($request->all());
      $checkouts = Checkout::create([
           'checkout_product_id' => $request->product_id,
            'product_price' => $request->product_price,
@@ -33,27 +34,32 @@ class CheckoutController extends Controller
            'product_quantity' => $request->product_quantity,
         ]);
 
-         $quantity = $request->product_quantity;
-         $price = $request->product_price;
+        $quantity = $request->product_quantity;
+        $price = $request->product_price;
 
-         $total_price = $quantity * $price;
-
-         $total_price = $quantity * $price;
+        $total_price = $quantity * $price;
 
         $checkouts->total_price = $total_price;
 
         $checkouts->save();
+
+        $stocks = Product::find($id);
+
+        //dd($stocks);
+        //deduct stock quantity after user buy products.
+        $quantity = $request->product_quantity;
+        $newStock = $request->product_stock;
+
+        $newTotal = $newStock - $quantity;
+
+        $stocks->stock = $newTotal;
+        $stocks->save();
 
         // $total =
        // event(new \App\Events\UserLoggedInEvent(auth()->user()));
        return redirect()->route('checkout.index');
     }
 
-    public function updateStock(){
-
-    $stocks = Product::findorFail();
-
-    }
 
 }
 

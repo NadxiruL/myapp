@@ -16,14 +16,14 @@
 
 
 
-@foreach ( $chekcouts as $checkout )
+{{-- @foreach ( $checkouts as $checkout ) --}}
 
 
-
-    <p>Product :{{$checkout->product->name}}</p>
+    <p>Product :{{$checkouts->product->name}}</p>
+             <p>Product : {{$checkouts->product_price}}</p>
     <div class="col-text-left"> Price : RM  </div>
 
-@endforeach
+{{-- @endforeach --}}
      </div>
     </div>
    </div>
